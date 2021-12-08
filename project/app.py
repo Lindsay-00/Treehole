@@ -33,11 +33,10 @@ if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
 # create a table for all the stocks information if doesn't exist yet
-db.execute("CREATE TABLE IF NOT EXISTS stocks(user_id INTEGER, symbol TEXT NOT NULL, name TEXT NOT NULL, shares INTEGER, price INTEGER, total INTEGER)")
+db.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)")
 
 # another table to keep track of transactions for history, if doesn't exist yet
-db.execute("CREATE TABLE IF NOT EXISTS transactions(user_id INTEGER, symbol TEXT NOT NULL, shares INTEGER, price INTEGER, transacted TEXT NOT NULL)")
-
+db.execute("CREATE TABLE IF NOT EXISTS CREATE TABLE post (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, title TEXT NOT NULL, body TEXT NOT NULL, FOREIGN KEY (author_id) REFERENCES user (id)))")
 
 @app.after_request
 def after_request(response):
@@ -51,23 +50,15 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    """Show portfolio of stocks"""
+    """Show posts"""
     # get info from session and tables
     user_id = session["user_id"]
-    stocks = db.execute("SELECT * FROM stocks WHERE user_id = ?", user_id)
-    users = db.execute("SELECT * FROM users WHERE id = ?", user_id)
-    # this is to account for the situation where the table is empty (there is no information from any user)
-    if len(stocks) == 0:
-        total = 0
-    # else we can get everything we need to display from the database, and turn them into the right format (two decimals)
-    else:
-        total = float(db.execute("SELECT total FROM stocks WHERE user_id = ?", user_id)[0]["total"])
-    cash = float(db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"])
-    displayed_total = ("%.2f" % total)
-    net_total = ("%.2f" % (total + cash))
-    cash = ("%.2f" % cash)
-    return render_template("index.html", stocks=stocks, net_total=net_total, cash=cash, displayed_total=displayed_total)
+    title = db.execute("SELECT title FROM post WHERE user_id = ?", user_id)
+    body = db.execute("SELECT body FROM post WHERE user_id = ?", user_id)
+    created = db.execute("SELECT created FROM users WHERE id = ?", user_id)
 
+    # Render portfolio
+    return render_template("index.html", title=title, body=body, created=created)
 
 @app.route("/history")
 @login_required
