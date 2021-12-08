@@ -31,7 +31,7 @@ if not os.environ.get("API_KEY"):
 db.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)")
 
 # another table to keep track of transactions for history, if doesn't exist yet
-db.execute("CREATE TABLE IF NOT EXISTS CREATE TABLE post (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, title TEXT NOT NULL, body TEXT NOT NULL, FOREIGN KEY (author_id) REFERENCES user (id)))")
+db.execute("CREATE TABLE IF NOT EXISTS post (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, title TEXT NOT NULL, body TEXT NOT NULL, FOREIGN KEY (author_id) REFERENCES user (id))")
 
 @app.after_request
 def after_request(response):
@@ -41,8 +41,11 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-
 @app.route("/")
+def hello():
+    return render_template("hello.html")
+
+@app.route("/index")
 @login_required
 def index():
     """Show posts"""
