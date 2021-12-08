@@ -9,16 +9,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required
 
-from datetime import datetime
-
 # Configure application
 app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-# Custom filter
-app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -85,7 +80,7 @@ def post():
         title = request.form.get("title")
         body = request.form.get("body")
         db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
-        return render_template("post.html")
+        return redirect("/")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
