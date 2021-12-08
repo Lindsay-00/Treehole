@@ -28,12 +28,12 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    
-# # Configure application
-# app = Flask(__name__)
 
-# # Ensure templates are auto-reloaded
-# app.config["TEMPLATES_AUTO_RELOAD"] = True
+# Configure application
+app = Flask(__name__)
+
+# Ensure templates are auto-reloaded
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # # Custom filter
 # app.jinja_env.filters["usd"] = usd
