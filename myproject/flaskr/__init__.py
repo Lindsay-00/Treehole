@@ -26,7 +26,7 @@ def create_app(test_config=None):
 
     # a simple page that says hello
     @app.route('/welcome')
-    def hello():
-        return 'Hello, World!'
+    def welcome():
+        return render_template("welcome.html")
 
-    return app
+return app
