@@ -84,8 +84,8 @@ def post():
         user_id = session["user_id"]
         title = request.form.get("title")
         body = request.form.get("body")
-
-
+        db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
+        return render_template("post.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
