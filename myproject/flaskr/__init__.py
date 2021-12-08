@@ -8,11 +8,32 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from myproject.flaskr.helpers import apology, login_required
 
-# Configure application
-app = Flask(__name__)
+def create_app(test_config=None):
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+    )
 
-# Ensure templates are auto-reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
+    if test_config is None:
+        # load the instance config, if it exists, when not testing
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        # load the test config if passed in
+        app.config.from_mapping(test_config)
+
+    # ensure the instance folder exists
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+    
+# # Configure application
+# app = Flask(__name__)
+
+# # Ensure templates are auto-reloaded
+# app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # # Custom filter
 # app.jinja_env.filters["usd"] = usd
@@ -28,7 +49,7 @@ db = SQL("sqlite:///treehole.db")
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
-    
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
