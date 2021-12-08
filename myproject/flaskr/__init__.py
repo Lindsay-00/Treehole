@@ -38,7 +38,7 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    """Show portfolio of stocks"""
+    """Show posts"""
 
     # Query database for post
     rows = db.execute("SELECT cash FROM users WHERE id = :id", id=session["user_id"])
