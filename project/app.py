@@ -68,6 +68,10 @@ def history():
     transactions = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", transactions=transactions)
 
+@app.route("/seekhelp")
+@login_required
+def seekhelp():
+    return render_template("seekhelp.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
