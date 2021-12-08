@@ -59,7 +59,7 @@ def index():
         total += stock["shares"] * quote["price"]
 
     # Render portfolio
-    return render_template("index.html", cash=cash, stocks=stocks, total=total)
+    return render_template("index.html", title=title, body=body, created=created)
 
 def errorhandler(e):
     """Handle error"""
