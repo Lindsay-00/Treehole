@@ -6,41 +6,9 @@
 
 {% block main %}
 
-<table class="container py-5 text-center">
-    <thead>
-        <tr>
-            <th>Symbol</th>
-            <th>Share</th>
-            <th>Price</th>
-            <th>TOTAL</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--to be kept for testing
-        <p>{{portfolio}}</p>
-        -->
-        <tr>
-        {% for stock in portfolio %}
-            <tr>
-                <td>{{stock.symbol}}</td>
-                <td>{{stock.share}}</td>
-                <td>{{stock.price|usd}}</td>
-                <td>{{total_price|usd}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
-            <td class="border-0 text-end"> {{cash|usd}}</td>
-        </tr>
-        <tr>
-            <td class="border-0 fw-bold text-end"  colspan="4">TOTAL</td>
-            <td class="border-0 text-end">$10,000.00</td>
-        </tr>
-    </tfoot>
-</table>
-    <!-- which stocks the user owns, the numbers of shares owned, the current price of each stock, and the total value of each holding (i.e., shares times price). Also display the user’s current cash balance along with a grand total (i.e., stocks’ total value plus cash).-->
+
+
+
 
 
 {% endblock %}
