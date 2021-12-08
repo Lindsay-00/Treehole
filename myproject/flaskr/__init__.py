@@ -28,6 +28,6 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/')
     def welcome():
-        return render_template("welcome.html")
+        return render_template("hello.html")
 
     return app

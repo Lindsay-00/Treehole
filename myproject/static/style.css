@@ -21,3 +21,24 @@ nav .navbar-brand .green
 {
     color: #2e944b;
 }
+
+.col-md-10 {
+    flex: 0 0 auto;
+    width: 83.33333333%;
+  }
+
+  .col-lg-8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+  }
+
+  .col-xl-7 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+  }
+
+  .btn-outline-primary {
+    color: #0085A1;
+    border-color: #0085A1;
+  }
+  
