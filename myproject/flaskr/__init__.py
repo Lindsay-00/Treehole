@@ -40,7 +40,7 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
 
-    # Query database for user's cash
+    # Query database for post
     rows = db.execute("SELECT cash FROM users WHERE id = :id", id=session["user_id"])
     if not rows:
         return apology("missing user")
