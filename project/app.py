@@ -7,7 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required
 
 from datetime import datetime
 
@@ -76,7 +76,14 @@ def seekhelp():
 @app.route("/post", methods=["GET", "POST"])
 @login_required
 def post():
-    
+    # bring user to this page via GET
+    if request.method == "GET":
+        return render_template("post.html")
+    # get info from POST
+    elif request.method == "POST":
+        user_id = session["user_id"]
+        title = request.form.get("title")
+        body = request.form.get("body")
 
 
 
