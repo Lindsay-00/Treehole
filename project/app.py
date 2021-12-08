@@ -69,66 +69,6 @@ def index():
     return render_template("index.html", stocks=stocks, net_total=net_total, cash=cash, displayed_total=displayed_total)
 
 
-@app.route("/buy", methods=["GET", "POST"])
-@login_required
-def buy():
-    """Buy shares of stock"""
-    # getting it just directs them to this page
-    if request.method == "GET":
-        return render_template("buy.html")
-    # get the information the user put in from the POST request
-    elif request.method == "POST":
-        symbol = request.form.get("symbol")
-        shares = request.form.get("shares")
-        # render error if nothing is typed in
-        if symbol == None or shares == None:
-            return apology("Please don't leave an area blank", 400)
-        # get only integers, render apology if not (this didn't work for some reason T.T)
-        # source: https://www.kite.com/python/answers/how-to-check-if-a-variable-is-a-certain-type-in-python#:~:text=Use%20isinstance()%20to%20check,instance%20of%20the%20class%20type%20.
-        elif shares.isdigit() == False:
-            return apology("Please enter integer for shares", 400)
-        # get the stock information from lookup function
-        else:
-            quote = lookup(symbol)
-            if quote != None:
-                user_id = session["user_id"]
-                price = quote["price"]
-                companyname = quote["name"]
-                # calculate the total that they want to buy and compare it with cash
-                total = price * float(shares)
-                cash = float(db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"])
-                # if they don't have enough money to buy desired shares, render apology
-                if total > cash:
-                    return apology("Insufficient funds", 400)
-                # this situaion is for where the user don't have this company's shares yet
-                elif len(db.execute("SELECT * FROM stocks WHERE name = ? AND user_id = ?", companyname, user_id)) == 0:
-                    db.execute("INSERT INTO stocks (user_id, symbol, name, shares, price, total) VALUES (?, ?, ?, ?, ?, ?)",
-                               user_id, symbol, companyname, shares, price, total)
-                    cash = cash - total
-                    db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, user_id)
-                    # this is for history
-                    # source:https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-                    timestamp = str(datetime.now())
-                    shares_count = str("+" + str(shares))
-                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)",
-                               user_id, symbol, shares_count, price, timestamp)
-                # this situation is for if the row for that company's shares already exists for that user
-                else:
-                    db.execute("UPDATE stocks SET shares = shares + ?, total = total + ? WHERE name = ? AND user_id = ?",
-                               shares, total, companyname, user_id)
-                    cash = cash - total
-                    db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, user_id)
-                    # this is for history
-                    timestamp = str(datetime.now())
-                    shares_count = str("+" + str(shares))
-                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)",
-                               user_id, symbol, shares_count, price, timestamp)
-            # if quote is none
-            else:
-                return apology("Invalid symbol", 400)
-    return redirect("/")
-
-
 @app.route("/history")
 @login_required
 def history():
