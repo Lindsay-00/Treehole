@@ -65,8 +65,8 @@ def index():
 def history():
     # pass in info from post
     user_id = session["user_id"]
-    transactions = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
-    return render_template("history.html", transactions=transactions)
+    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
+    return render_template("history.html", post=post)
 
 @app.route("/seekhelp")
 @login_required
