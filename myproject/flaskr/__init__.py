@@ -1,9 +1,8 @@
-import os
+# import os
 
 from cs50 import SQL
-from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
-from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -39,24 +38,11 @@ def after_request(response):
 @login_required
 def index():
     """Show posts"""
-
-    # Query database for post
-    rows = db.execute("SELECT cash FROM users WHERE id = :id", id=session["user_id"])
-    if not rows:
-        return apology("missing user")
-    cash = rows[0]["cash"]
-    total = cash
-
-    # Query database for user's stocks
-    stocks = db.execute("""SELECT symbol, SUM(shares) AS shares FROM transactions
-        WHERE user_id = :user_id GROUP BY symbol HAVING SUM(shares) > 0""", user_id=session["user_id"])
-
-    # Query Yahoo for stocks' latest names and prices
-    for stock in stocks:
-        quote = lookup(stock["symbol"])
-        stock["name"] = quote["name"]
-        stock["price"] = quote["price"]
-        total += stock["shares"] * quote["price"]
+    # get info from session and tables
+    user_id = session["user_id"]
+    title = db.execute("SELECT title FROM post WHERE user_id = ?", user_id)
+    body = db.execute("SELECT body FROM post WHERE user_id = ?", user_id)
+    created = db.execute("SELECT created FROM users WHERE id = ?", user_id)
 
     # Render portfolio
     return render_template("index.html", title=title, body=body, created=created)
