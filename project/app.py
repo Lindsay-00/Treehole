@@ -73,6 +73,12 @@ def history():
 def seekhelp():
     return render_template("seekhelp.html")
 
+@app.route("/post", methods=["GET", "POST"])
+@login_required
+def post():
+    
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -118,7 +124,6 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
