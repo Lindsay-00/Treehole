@@ -11,16 +11,14 @@
                 <th class="text-start">Title</th>
                 <th class="text-start">Post</th>
                 <th class="text-end">Created</th>
-                <th class="text-end">Transacted</th>
             </tr>
         </thead>
        <tbody>
             {% for row in post %}
                 <tr>
-                    <td class="text-start">{{row.symbol}}</td>
-                    <td class="text-start">{{row.shares}}</td>
-                    <td class="text-end">{{row.price}}</td>
-                    <td class="text-end">{{row.transacted}}</td>
+                    <td class="text-start">{{row.title}}</td>
+                    <td class="text-start">{{row.body}}</td>
+                    <td class="text-end">{{row.created}}</td>
                 </tr>
             {% endfor %}
         </tbody>
