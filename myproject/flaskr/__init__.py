@@ -15,8 +15,8 @@ app = Flask(__name__)
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# Custom filter
-app.jinja_env.filters["usd"] = usd
+# # Custom filter
+# app.jinja_env.filters["usd"] = usd
 
 # Configure session
 app.config["SESSION_PERMANENT"] = False
