@@ -7,7 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, lookup, usd
+from project.helpers import apology, login_required, lookup, usd
 
 from datetime import datetime
 
@@ -31,11 +31,11 @@ db = SQL("sqlite:///finance.db")
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
-    
+
 # create a table for all the stocks information if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS stocks(user_id INTEGER, symbol TEXT NOT NULL, name TEXT NOT NULL, shares INTEGER, price INTEGER, total INTEGER)")
 
-# another table to keep track of transactions for history, if doesn't exist yet 
+# another table to keep track of transactions for history, if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS transactions(user_id INTEGER, symbol TEXT NOT NULL, shares INTEGER, price INTEGER, transacted TEXT NOT NULL)")
 
 
@@ -98,11 +98,11 @@ def buy():
                 total = price * float(shares)
                 cash = float(db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"])
                 # if they don't have enough money to buy desired shares, render apology
-                if total > cash: 
+                if total > cash:
                     return apology("Insufficient funds", 400)
                 # this situaion is for where the user don't have this company's shares yet
                 elif len(db.execute("SELECT * FROM stocks WHERE name = ? AND user_id = ?", companyname, user_id)) == 0:
-                    db.execute("INSERT INTO stocks (user_id, symbol, name, shares, price, total) VALUES (?, ?, ?, ?, ?, ?)", 
+                    db.execute("INSERT INTO stocks (user_id, symbol, name, shares, price, total) VALUES (?, ?, ?, ?, ?, ?)",
                                user_id, symbol, companyname, shares, price, total)
                     cash = cash - total
                     db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, user_id)
@@ -110,18 +110,18 @@ def buy():
                     # source:https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
                     timestamp = str(datetime.now())
                     shares_count = str("+" + str(shares))
-                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)", 
+                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)",
                                user_id, symbol, shares_count, price, timestamp)
                 # this situation is for if the row for that company's shares already exists for that user
                 else:
-                    db.execute("UPDATE stocks SET shares = shares + ?, total = total + ? WHERE name = ? AND user_id = ?", 
+                    db.execute("UPDATE stocks SET shares = shares + ?, total = total + ? WHERE name = ? AND user_id = ?",
                                shares, total, companyname, user_id)
                     cash = cash - total
                     db.execute("UPDATE users SET cash = ? WHERE id = ?", cash, user_id)
                     # this is for history
                     timestamp = str(datetime.now())
                     shares_count = str("+" + str(shares))
-                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)", 
+                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)",
                                user_id, symbol, shares_count, price, timestamp)
             # if quote is none
             else:
@@ -136,7 +136,7 @@ def history():
     # we just pass in the transactions table. It is already updated everywhere else
     user_id = session["user_id"]
     transactions = db.execute("SELECT * FROM transactions WHERE user_id = ?", user_id)
-    return render_template("history.html", transactions=transactions) 
+    return render_template("history.html", transactions=transactions)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -198,10 +198,10 @@ def quote():
         symbol = request.form.get("symbol")
         # use the lookup function to look up info we need
         quote_dict = lookup(symbol)
-        if quote_dict != None: 
-            print("A share of " + quote_dict["name"] + " (" + quote_dict["symbol"] + ") " + 
+        if quote_dict != None:
+            print("A share of " + quote_dict["name"] + " (" + quote_dict["symbol"] + ") " +
                   "costs $" + str(quote_dict["price"]) + ".")
-            return render_template("quote_result.html", quote_dict=quote_dict) 
+            return render_template("quote_result.html", quote_dict=quote_dict)
         else:
             return apology("invalid symbol", 400)
 
@@ -258,7 +258,7 @@ def sell():
             # then get info we need from the table
             stocks = db.execute("SELECT * FROM stocks WHERE user_id = ?", user_id)
             cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-            owned_shares = int( 
+            owned_shares = int(
                 (db.execute("SELECT shares FROM stocks WHERE user_id = ? AND symbol = ?", user_id, symbol))[0]["shares"])
             # render apology if owned shares is less than shares
             if owned_shares < shares:
@@ -277,7 +277,7 @@ def sell():
                 # this is for history
                 timestamp = str(datetime.now())
                 shares_count = str("-" + str(shares))
-                db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)", 
+                db.execute("INSERT INTO transactions (user_id, symbol, shares, price, transacted) VALUES (?, ?, ?, ?, ?)",
                            user_id, symbol, shares_count, price, timestamp)
                 # calculate total and cash and pass them into table
                 total = owned_shares * float(price)
@@ -313,7 +313,7 @@ def reset_password():
         elif new_password == '' or new_password1 == '':
             return apology("Please enter new password", 400)
         # otherwise generate a hash for new password and update the table
-        else: 
+        else:
             hash = generate_password_hash(new_password, method='pbkdf2:sha256', salt_length=8)
             db.execute("UPDATE users SET hash = ? WHERE id = ?", hash, user_id)
             return render_template("reset_password_success.html")
