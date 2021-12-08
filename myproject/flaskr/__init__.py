@@ -61,6 +61,37 @@ def index():
     # Render portfolio
     return render_template("index.html", title=title, body=body, created=created)
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Register user"""
+    # bring the user to the page via GET
+    if request.method == "GET":
+        return render_template("register.html")
+    # get all the info that we need from POST
+    elif request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        # render apology if nothing is typed in for username
+        if username == '':
+            return apology("Please enter a username", 400)
+        # check if username already exists
+        else:
+            rows = db.execute("SELECT * FROM user WHERE username = ?", username)
+            if len(rows) != 0:
+                return apology("Username already exists", 400)
+            # check if passwords match
+            elif password != confirmation:
+                return apology("Passwords don't match", 400)
+            # render apology if nothing is typed in for username
+            elif password == '' or confirmation == '':
+                return apology("Please enter password", 400)
+            # store user info into table if nothing is wrong
+            else:
+                hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+                db.execute("INSERT INTO user (username, password) VALUES (?, ?)", username, hash)
+    return redirect("/")
+
 def errorhandler(e):
     """Handle error"""
     if not isinstance(e, HTTPException):
