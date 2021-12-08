@@ -63,8 +63,7 @@ def index():
 @app.route("/history")
 @login_required
 def history():
-    """Show history of transactions"""
-    # we just pass in the transactions table. It is already updated everywhere else
+    # pass in info from post
     user_id = session["user_id"]
     transactions = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", transactions=transactions)
