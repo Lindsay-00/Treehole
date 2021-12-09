@@ -8,28 +8,25 @@
 
 <!-- Display Blog posts -->
 <div class="container">
-
-
-
-            <!-- Post preview 1-->
-            {% for my_item in my_collection %}
-                {{ my_item.___}}
-                <div class="post-preview">
-                    <h2 class="post-title">(Titile of 1st post)</h2>
-                    <p class="post-content">(content of 1st post)</p>
-                    <p class="post-meta">
-                        Posted on (date)
-                    </p>
-                    <form action="/post" method="post">
-                        <div class="mb-3">
-                            <input class="form-control mx-auto w-auto" name="reply" placeholder="reply">
-                        </div>
-                        <button class="btn btn-primary" type="submit">Post</button>
-                    </form>
-                </div>
-                <!-- Divider-->
-                <hr>
-            {% endfor %}
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Title</th>
+                <th class="text-start">Post</th>
+                <th class="text-end">Created on</th>
+            </tr>
+        </thead>
+       <tbody>
+        {% for row in post %}
+<table class="table tablestriped">
+    <thead>
+        <tr>
+            <th class="text-start">Title</th>
+            <th class="text-start">Post</th>
+            <th class="text-end">Created on</th>
+        </tr>
+    </thead>
+    {% for row in post %}
 
 
 {% endblock %}
