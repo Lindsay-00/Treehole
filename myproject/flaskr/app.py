@@ -138,3 +138,9 @@ def errorhandler(e):
 # Listen for errors
 for code in default_exceptions:
     app.errorhandler(code)(errorhandler)
+
+#to make posts
+@app.route("/saysomething", methods=["GET", "POST"])
+def saysomething():
+    request.form.get("")
+    return redirect("/")
