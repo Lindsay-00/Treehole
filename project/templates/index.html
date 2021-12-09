@@ -28,14 +28,24 @@
                     Posted on (date)
                 </p>
             </div> #}
-
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Title</th>
+                <th class="text-start">Post</th>
+                <th class="text-end">Created on</th>
+            </tr>
+        </thead>
+       <tbody>
     {% for row in post %}
     <div class="container">
     <!-- Post preview 1-->
         <div class="post-preview">
-            <h2 class="post-title">{{row.title}}</h2>
-            <p class="post-body">{{row.body}}</p>
-            <p class="post-meta">{{row.created}}</p>
+            <tr>
+                <td class="text-start">{{row.title}}</td>
+                <td class="text-start">{{row.post}}</td>
+                <td class="text-end">{{row.created}}</td>
+            </tr>
         </div>
     </div>
     {% endfor %}
