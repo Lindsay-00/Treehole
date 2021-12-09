@@ -180,7 +180,7 @@ def reset_password():
         new_password1 = request.form.get("new_password1")
         # get user info and check if things match
         rows = db.execute("SELECT * FROM user WHERE id = ?", user_id)
-        if not check_password_hash(rows[0]["hash"], original_password):
+        if not check_password_hash(rows[0]["password"], original_password):
             return apology("Please enter correct original password", 400)
         # render apology if new passwords don't match
         elif new_password != new_password1:
