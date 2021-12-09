@@ -1,5 +1,3 @@
-import os
-
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
@@ -21,11 +19,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///treehole.db")
-
-# Make sure API key is set
-if not os.environ.get("API_KEY"):
-    raise RuntimeError("API_KEY not set")
+db = SQL("sqlite:///Treehole.db")
 
 # create a table for all the stocks information if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)")
@@ -51,20 +45,19 @@ def index():
     """Show posts"""
     # get info from session and tables
     user_id = session["user_id"]
-    title = db.execute("SELECT title FROM post WHERE author_id = ?", user_id)
-    body = db.execute("SELECT body FROM post WHERE author_id = ?", user_id)
-    created = db.execute("SELECT created FROM post WHERE author_id = ?", user_id)
-
+    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
     # Render portfolio
-    return render_template("index.html", title=title, body=body, created=created)
+    return render_template("index.html", post=post)
 
 @app.route("/history")
 @login_required
 def history():
     # pass in info from post
     user_id = session["user_id"]
-    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
-    return render_template("history.html", post=post)
+    title = db.execute("SELECT title FROM post WHERE author_id = ?", user_id)
+    body = db.execute("SELECT body FROM post WHERE author_id = ?", user_id)
+    created = db.execute("SELECT created FROM post WHERE author_id = ?", user_id)
+    return render_template("history.html", title=title, body=body, created=created)
 
 @app.route("/seekhelp")
 @login_required
