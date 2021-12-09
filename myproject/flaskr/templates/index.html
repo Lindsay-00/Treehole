@@ -9,17 +9,18 @@
 <!-- Display Blog posts -->
 <div class="container">
             <!-- Post preview 1-->
-            {% for my_item in my_collection %}
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">(Titile of 1st post)</h2>
-                </a>
-                <p class="post-meta">
-                    Posted on (date)
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr>
+            {% for post in user_posts %}
+            {{}}}
+                <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">(Titile of 1st post)</h2>
+                    </a>
+                    <p class="post-meta">
+                        Posted on (date)
+                    </p>
+                </div>
+                <!-- Divider-->
+                <hr>
             {% endfor %}
 
 
