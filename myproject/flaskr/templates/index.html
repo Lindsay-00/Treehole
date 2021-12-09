@@ -9,6 +9,7 @@
 <!-- Display Blog posts -->
 <div class="container">
             <!-- Post preview 1-->
+            {% for my_item in my_collection %}
             <div class="post-preview">
                 <a href="post.html">
                     <h2 class="post-title">(Titile of 1st post)</h2>
@@ -19,15 +20,8 @@
             </div>
             <!-- Divider-->
             <hr>
-            <!-- Post preview 2-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">(Titile of 2nd post)</h2>
-                </a>
-                <p class="post-meta">
-                    Posted on (date)
-                </p>
-            </div>
+            {% endfor %}
+
 
 
 
