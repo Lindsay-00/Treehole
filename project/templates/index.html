@@ -28,18 +28,17 @@
                     Posted on (date)
                 </p>
             </div> #}
-    <table class="table tablestriped">
-        <thead>
-            <tr>
-                <th class="text-start">Title</th>
-                <th class="text-start">Post</th>
-                <th class="text-end">Created on</th>
-            </tr>
-        </thead>
-       <tbody>
-        {% for row in post %}
+<table class="table tablestriped">
+    <thead>
+        <tr>
+            <th class="text-start">Title</th>
+            <th class="text-start">Post</th>
+            <th class="text-end">Created on</th>
+        </tr>
+    </thead>
+    {% for row in post %}
         <div class="container">
-        <!-- Post preview 1-->
+            <!-- Post preview 1-->
             <div class="post-preview">
                 <tr>
                     <td class="text-start">{{row.title}}</td>
@@ -48,7 +47,7 @@
                 </tr>
             </div>
         </div>
-    </tbody>
     {% endfor %}
+    </tbody>
 
 {% endblock %}
