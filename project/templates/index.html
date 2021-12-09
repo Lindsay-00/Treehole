@@ -29,16 +29,15 @@
                 </p>
             </div> #}
 
-            {% for row in stocks %}
-            <div class="container">
-            <!-- Post preview 1-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">(Titile of 1st post)</h2>
-                </a>
-                <p class="post-meta">
-                    Posted on (date)
-                </p>
-            </div>
-
+    {% for row in post %}
+    <div class="container">
+    <!-- Post preview 1-->
+        <div class="post-preview">
+            <a href="post.html">
+                <h2 class="post-title">{{post.title}}</h2>
+            </a>
+            <p class="post-body">{{post.body}}</p>
+            <p class="post-meta">{{post.timestamp}}</p>
+        </div>
+    {% endfor %}
 {% endblock %}
