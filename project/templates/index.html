@@ -37,17 +37,18 @@
             </tr>
         </thead>
        <tbody>
-    {% for row in post %}
-    <div class="container">
-    <!-- Post preview 1-->
-        <div class="post-preview">
-            <tr>
-                <td class="text-start">{{row.title}}</td>
-                <td class="text-start">{{row.post}}</td>
-                <td class="text-end">{{row.created}}</td>
-            </tr>
+        {% for row in post %}
+        <div class="container">
+        <!-- Post preview 1-->
+            <div class="post-preview">
+                <tr>
+                    <td class="text-start">{{row.title}}</td>
+                    <td class="text-start">{{row.post}}</td>
+                    <td class="text-end">{{row.created}}</td>
+                </tr>
+            </div>
         </div>
-    </div>
+    </tbody>
     {% endfor %}
 
 {% endblock %}
