@@ -85,6 +85,8 @@ def post():
         db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
         return redirect("/")
 
+        
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
