@@ -45,12 +45,9 @@ def index():
     """Show posts"""
     # get info from session and tables
     user_id = session["user_id"]
-    title = db.execute("SELECT title FROM post WHERE author_id = ?", user_id)
-    body = db.execute("SELECT body FROM post WHERE author_id = ?", user_id)
-    created = db.execute("SELECT created FROM post WHERE author_id = ?", user_id)
-
+    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
     # Render portfolio
-    return render_template("index.html", title=title, body=body, created=created)
+    return render_template("index.html", post=post)
 
 @app.route("/history")
 @login_required
