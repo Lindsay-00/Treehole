@@ -7,7 +7,7 @@
 {% block main %}
 
 <!-- Display Blog posts -->
-<div class="container">
+{# <div class="container">
             <!-- Post preview 1-->
             <div class="post-preview">
                 <a href="post.html">
@@ -23,6 +23,18 @@
             <div class="post-preview">
                 <a href="post.html">
                     <h2 class="post-title">(Titile of 2nd post)</h2>
+                </a>
+                <p class="post-meta">
+                    Posted on (date)
+                </p>
+            </div> #}
+
+            {% for row in stocks %}
+            <div class="container">
+            <!-- Post preview 1-->
+            <div class="post-preview">
+                <a href="post.html">
+                    <h2 class="post-title">(Titile of 1st post)</h2>
                 </a>
                 <p class="post-meta">
                     Posted on (date)
