@@ -83,9 +83,16 @@ def post():
         title = request.form.get("title")
         body = request.form.get("body")
         db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
+        # store users' posts in a list
+        user_posts = []
+        user_post = request.form.get("post")
+        user_title = request.form.get("")
+        user_posts = user_posts.append(user_post)
+
         return redirect("/")
 
-        
+
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
