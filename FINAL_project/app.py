@@ -71,6 +71,7 @@ def history():
 def seekhelp():
     return render_template("seekhelp.html")
 
+
 @app.route("/post", methods=["GET", "POST"])
 @login_required
 def post():
