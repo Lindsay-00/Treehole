@@ -142,5 +142,9 @@ for code in default_exceptions:
 #to make posts
 @app.route("/saysomething", methods=["GET", "POST"])
 def saysomething():
-    request.form.get("")
+    # store users' posts in a list
+    user_posts = []
+    user_post = request.form.get("post")
+    user_posts = user_posts.append(user_post)
+
     return redirect("/")
