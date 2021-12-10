@@ -14,7 +14,7 @@
             <th class="text-start">ID</th>
             <th class="text-start">Title</th>
             <th class="text-start">Post</th>
-            <th class="text-start">Comment</th>
+            <th class="text-start">Comments</th>
             <th class="text-start">Reply</th>
             <th class="text-end">Created on</th>
         </tr>
@@ -28,7 +28,7 @@
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
-                        <ul class="list-group">
+                        <ul class="list-group list-group-flush">
                             {% for each in comment %}
                                 {% if each.post_id == row.post_id %}
                                     <li class="list-group-item">{{each.content}}</li>
