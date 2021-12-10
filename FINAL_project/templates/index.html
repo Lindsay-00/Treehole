@@ -28,10 +28,11 @@
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
-                    
-                    {# {% for comment in comments %} <!--how to get the comment linked with the post-->
-                        {{comment.}}}
-                    {% endfor %} #}
+                    {% if comments.post_id == row.post_id %}
+                        {% for comment in comments %}
+                            <td>{{comments.content}}</td>
+                        {% endfor %}
+                    {% endif %}
                     </td>
                     <td class="text-start">
                         <form action="/comment" method="post">
