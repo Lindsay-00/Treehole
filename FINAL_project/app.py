@@ -61,7 +61,7 @@ def comment():
         user_id = session["user_id"]
         content = request.form.get("reply")
         # how to get post id?
-
+        
         db.execute("INSERT INTO comment (author_id, content, ) VALUES (?, ?)", user_id, content,)
 
 
