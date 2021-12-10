@@ -39,13 +39,17 @@ def after_request(response):
 def hello():
     return render_template("hello.html")
 
-@app.route("/index")
+@app.route("/index",methods=["GET", "POST"])
 @login_required
 def index():
     """Show posts"""
-    # get info from session and tables
-    post = db.execute("SELECT created, title, body FROM post")
-    comments = db.execute("SELECT content FROM comment")
+    # bring user to this page via GET
+    if request.method == "GET":
+        return render_template("post.html")
+    # get info from POST
+    elif request.method == "POST":
+        post = db.execute("SELECT created, title, body FROM post")
+        comments = db.execute("SELECT content FROM comment")
 
     # Render
     return render_template("index.html", post=post)
