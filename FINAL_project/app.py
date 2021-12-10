@@ -4,6 +4,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 from helpers import apology, login_required
 
@@ -58,7 +59,9 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            print(timestamp)
+            date_format_str = '%d/%m/%Y %H:%M:%S.%f'
+            timestamp_formated = datetime.strptime(timestamp, date_format_str)
+            print(timestamp_formated)
             # if time is greater than 24 hours
                 # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
                 # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
