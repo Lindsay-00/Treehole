@@ -43,7 +43,7 @@ def hello():
 @login_required
 def index():
     """Show posts"""
-    post = db.execute("SELECT created, title, body FROM post")
+    post = db.execute("SELECT post_id, created, title, body FROM post")
     comments = db.execute("SELECT content FROM comment")
 
     # Render
@@ -59,11 +59,11 @@ def comment():
     # get info from POST
     elif request.method == "POST":
         user_id = session["user_id"]
+        post_name = request.form.get("post_id")
         content = request.form.get("reply")
-        # how to get post id?
-        
-        db.execute("INSERT INTO comment (author_id, content, ) VALUES (?, ?)", user_id, content,)
-
+        # get post id?
+        post_id = db.execute("SELECT post_id FROM post WHERE title =?", post_name)
+        db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?)", user_id, content, post_id)
 
 
 @app.route("/history")
