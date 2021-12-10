@@ -97,6 +97,21 @@ def delete():
     return redirect("/history")
 
 
+# edit post function
+@app.route("/edit", methods=["GET", "POST"])
+@login_required
+def edit():
+    # bring user to this page via GET
+    if request.method == "GET":
+        return render_template("edit.html")
+    # get info from POST
+    elif request.method == "POST":
+        post_id = list(request.form.keys())[1]
+        db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+        db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+    return redirect("/history")
+
+
 @app.route("/seekhelp")
 @login_required
 def seekhelp():

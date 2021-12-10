@@ -26,6 +26,13 @@
                             <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Delete Post</button>
                         </form>
                     </td>
+                    <td class="text-end">
+                        {# edit post function #}
+                        <form action="/edit" method="post">
+                            <input type="hidden" name="edit">
+                            <a class="btn btn-outline-info" href="/edit" role="button" type="submit" name={{row.post_id}}>Edit</a>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
