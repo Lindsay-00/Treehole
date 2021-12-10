@@ -11,6 +11,7 @@
 <table class="table tablestriped">
     <thead>
         <tr>
+            <th class="text-start">ID</th>
             <th class="text-start">Title</th>
             <th class="text-start">Post</th>
             <th class="text-start">Comment</th>
@@ -23,17 +24,20 @@
         <div class="container">
             <div class="post-preview">
                 <tr>
+                    <td class="text-start">{{row.post_id}}</td>
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
-                    {% for comment in comments %} <!--how to get the comment linked with the post-->
-                        {{comment.content}}}
+                    {% for each in comment %}
+                        {% if each.post_id == row.post_id %}
+                            <td class="text-start">{{each.content}}</td>
+                        {% endif %}
                     {% endfor %}
                     </td>
                     <td class="text-start">
                         <form action="/comment" method="post">
                             <div class="mb-3">
-                                <input class="form-control mx-auto w-auto" name="reply" id="reply" placeholder="reply">
+                                <input class="form-control mx-auto w-auto" name="reply" id={{row.post_id}} placeholder="reply">
                             </div>
                             <button class="btn btn-primary" type="submit">Reply</button>
                         </form>
