@@ -21,10 +21,10 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///Treehole.db")
 
-# create a table for all the stocks information if doesn't exist yet
+# create a table for all the user information if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)")
 
-# another table to keep track of transactions for history, if doesn't exist yet
+# another table to keep track of posts, if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS post (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, title TEXT NOT NULL, body TEXT NOT NULL, FOREIGN KEY (author_id) REFERENCES user (id))")
 
 @app.after_request
