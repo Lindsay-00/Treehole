@@ -27,6 +27,9 @@ db.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMEN
 # another table to keep track of posts, if doesn't exist yet
 db.execute("CREATE TABLE IF NOT EXISTS post (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER NOT NULL, created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, title TEXT NOT NULL, body TEXT NOT NULL, FOREIGN KEY (author_id) REFERENCES user (id))")
 
+# another table to keep track of comments, if doesn't exist yet
+db.execute("CREATE TABLE IF NOT EXISTS comment (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT NOT NULL, author_id INTEGER NOT NULL, post_id INTEGER NOT NULL)")
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
