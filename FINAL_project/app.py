@@ -43,16 +43,27 @@ def hello():
 @login_required
 def index():
     """Show posts"""
-    # bring user to this page via GET
-    if request.method == "GET":
-        return render_template("post.html")
-    # get info from POST
-    elif request.method == "POST":
-        post = db.execute("SELECT created, title, body FROM post")
-        comments = db.execute("SELECT content FROM comment")
+    post = db.execute("SELECT created, title, body FROM post")
+    comments = db.execute("SELECT content FROM comment")
 
     # Render
     return render_template("index.html", post=post)
+
+
+@app.route("/index",methods=["GET", "POST"])
+@login_required
+def comment():
+    # bring user to this page via GET
+    if request.method == "GET":
+        return render_template("index.html")
+    # get info from POST
+    elif request.method == "POST":
+        user_id = session["user_id"]
+        content = request.form.get("reply")
+        post_id = 
+        db.execute("INSERT INTO comment (author_id, content, ) VALUES (?, ?)", user_id, content,)
+
+
 
 @app.route("/history")
 @login_required
