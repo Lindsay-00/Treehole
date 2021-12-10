@@ -64,7 +64,6 @@ def timer():
     for timestamp in timestamps:
         print(timestamp)
         # if time is greater than 24 hours
-            # post_id = list(request.form.keys())[1]
             # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
             # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
     return render_template("index.html")
