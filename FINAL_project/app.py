@@ -62,21 +62,13 @@ def index():
 def timer():
     timestamps = db.execute("SELECT created FROM post")
     for timestamp in timestamps:
+        print(timestamp)
         # if time is greater than 24 hours
-            post_id = list(request.form.keys())[1]
-            db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-            db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+            # post_id = list(request.form.keys())[1]
+            # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+            # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+    return render_template("index.html")
 
-
-
-    # if len(session) == 0:
-    #     return redirect("/login")
-    # else:
-    #     """Show posts"""
-    #     post = db.execute("SELECT post_id, created, title, body FROM post")
-    #     comment = db.execute("SELECT post_id, content FROM comment")
-    #     # Render
-    #     return render_template("index.html", post=post, comment=comment)
 
 
 
