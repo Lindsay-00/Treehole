@@ -109,6 +109,7 @@ def edit():
         post_id = list(request.form.keys())[1]
         post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
         print(post)
+        print(list(request.form.keys()))
         render_template("edit.html", post=post)
         body = request.form.get("body")
         title = request.form.get("title")
