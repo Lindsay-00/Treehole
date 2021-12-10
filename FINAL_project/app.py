@@ -62,7 +62,7 @@ def comment():
         content = request.form.get("reply")
         # get post id
         post_id = db.execute("SELECT post_id FROM post WHERE title =?", post_name)
-        db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?)", user_id, content, post_id)
+        db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
 
 
 @app.route("/history")
