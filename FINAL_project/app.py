@@ -90,14 +90,18 @@ def post():
     # get info from POST
     elif request.method == "POST":
         user_id = session["user_id"]
-        title = request.form.get("title")
-        body = request.form.get("body")
-        db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
-        # store users' posts in a list
-        user_posts = []
-        user_post = request.form.get("post")
-        user_title = request.form.get("")
-        user_posts = user_posts.append(user_post)
+        # return apology if title or post body is empty
+        if not request.form.get("title") or not request.form.get("body"):
+            return apology("Empty title or body", 403)
+        else:
+            title = request.form.get("title")
+            body = request.form.get("body")
+            db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
+            # store users' posts in a list
+            user_posts = []
+            user_post = request.form.get("post")
+            user_title = request.form.get("")
+            user_posts = user_posts.append(user_post)
 
         return redirect("/")
 
