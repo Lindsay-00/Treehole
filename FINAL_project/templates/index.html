@@ -38,10 +38,16 @@
                     </td>
                     <td class="text-start">
                         <form action="/comment" method="post">
-                            <div class="mb-3">
+                            {# <div class="mb-3">
                                 <input class="form-control mx-auto w-auto" name="reply" id="reply" placeholder="Leave a comment">
                             </div>
-                                <button class="btn btn-primary" type="submit" name={{row.post_id}}>Reply</button>
+                                <button class="btn btn-primary" type="submit" name={{row.post_id}}>Reply</button> #}
+                            <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="reply" id="reply" placeholder="Leave a comment" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit" name={{row.post_id}}>Reply</button>
+                            </div>
+                            </div>
                         </form>
                     </td>
                     <td class="text-end">{{row.created}}</td>
