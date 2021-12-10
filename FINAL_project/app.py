@@ -45,11 +45,9 @@ def index():
     """Show posts"""
     # get info from session and tables
     post = db.execute("SELECT created, title, body FROM post")
-    # for each in post:
-    #     post_comment = db.execute("SELECT content FROM comment JOIN ")
+    comments = db.execute("SELECT content FROM comment")
 
-
-    # Render 
+    # Render
     return render_template("index.html", post=post)
 
 @app.route("/history")

@@ -25,7 +25,12 @@
                 <tr>
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
-                    <td class="text-start">comment displayed</td>
+                    <td class="text-start">
+                    {% for comment in comments %} <!--how to get the post linked with the post-->
+                        
+                        comment displayed
+                    {% endfor %}
+                    </td>
                     <td class="text-start">
                         <form action="/post" method="post">
                             <div class="mb-3">
