@@ -57,6 +57,7 @@ def comment():
         return render_template("index.html")
     # get info from POST
     elif request.method == "POST":
+        print(request.form)
         user_id = session["user_id"]
         post_name = request.form.get("post_id")
         content = request.form.get("reply")
@@ -94,7 +95,6 @@ def post():
         if not request.form.get("title") or not request.form.get("body"):
             return apology("Empty title or body", 403)
         else:
-            print(request.form)
             title = request.form.get("title")
             body = request.form.get("body")
             db.execute("INSERT INTO post (author_id, title, body) VALUES (?, ?, ?)", user_id, title, body)
