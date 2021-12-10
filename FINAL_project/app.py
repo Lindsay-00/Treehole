@@ -60,8 +60,14 @@ def index():
 @app.route("/index", methods=["GET", "POST"])
 @login_required
 def timer():
-    timestamps = db.execute("SELECT ")
-    
+    timestamps = db.execute("SELECT created FROM post")
+    for timestamp in timestamps:
+        # if time is greater than 24 hours
+            post_id = list(request.form.keys())[1]
+            db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+            db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+
+
 
     # if len(session) == 0:
     #     return redirect("/login")
