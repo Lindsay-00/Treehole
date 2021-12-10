@@ -44,11 +44,11 @@ def hello():
 def index():
     """Show posts"""
     post = db.execute("SELECT post_id, created, title, body FROM post")
-    comments = db.execute("SELECT post_id, content FROM comment ")
+    comment = db.execute("SELECT post_id, content FROM comment ")
     print(comments)
     print(post)
     # Render
-    return render_template("index.html", post=post, comments=comments)
+    return render_template("index.html", post=post, comment=comment)
 
 
 @app.route("/comment",methods=["GET", "POST"])
