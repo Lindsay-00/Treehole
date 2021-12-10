@@ -86,10 +86,9 @@ def delete():
         return render_template("history.html")
     # get info from POST
     elif request.method == "POST":
-        # post_id = list(request.form.keys())[1]
-        print(list(request.form.keys()))
-        user_id = session["user_id"]
-        db.execute("DELETE FROM post WHERE (author_id, post_id) VALUES (?, ?)", user_id, post_id)
+        post_id = list(request.form.keys())[1]
+        db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+        db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
     return redirect("/history")
 
 @app.route("/seekhelp")
