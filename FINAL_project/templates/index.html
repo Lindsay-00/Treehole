@@ -7,7 +7,6 @@
 {% block main %}
 
 <!-- Display Blog posts -->
-<!-- Post preview 1-->
 <table class="table tablestriped">
     <thead>
         <tr>
@@ -29,6 +28,7 @@
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
                         <ul class="list-group list-group-flush">
+                            {# display comments #}
                             {% for each in comment %}
                                 {% if each.post_id == row.post_id %}
                                     <li class="list-group-item">{{each.content}}</li>
@@ -37,11 +37,8 @@
                         </ul>
                     </td>
                     <td class="text-start">
+                        {# reply to each post #}
                         <form action="/comment" method="post">
-                            {# <div class="mb-3">
-                                <input class="form-control mx-auto w-auto" name="reply" id="reply" placeholder="Leave a comment">
-                            </div>
-                                <button class="btn btn-primary" type="submit" name={{row.post_id}}>Reply</button> #}
                             <div class="input-group mb-3">
                             <input type="text" class="form-control" name="reply" id="reply" placeholder="Leave a comment" aria-describedby="basic-addon2">
                             <div class="input-group-append">
