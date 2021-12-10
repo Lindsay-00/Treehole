@@ -44,8 +44,11 @@ def hello():
 def index():
     """Show posts"""
     # get info from session and tables
-    user_id = session["user_id"]
-    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
+    post = db.execute("SELECT id, created, title, body FROM post")
+    # for each in post:
+    #     post_comment = db.execute("SELECT content FROM comment JOIN ")
+
+
     # Render portfolio
     return render_template("index.html", post=post)
 

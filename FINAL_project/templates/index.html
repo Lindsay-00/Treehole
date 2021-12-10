@@ -13,6 +13,8 @@
         <tr>
             <th class="text-start">Title</th>
             <th class="text-start">Post</th>
+            <th class="text-start">Comment</th>
+            <th class="text-start">Reply</th>
             <th class="text-end">Created on</th>
         </tr>
     </thead>
@@ -23,6 +25,15 @@
                 <tr>
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
+                    <td class="text-start"> comment here</td>
+                    <td class="text-start">
+                        <form action="/post" method="post">
+                            <div class="mb-3">
+                                <input class="form-control mx-auto w-auto" name="reply" id="reply" placeholder="reply">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Reply</button>
+                        </form>
+                    </td>
                     <td class="text-end">{{row.created}}</td>
                 </tr>
             </div>
