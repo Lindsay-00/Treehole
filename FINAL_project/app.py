@@ -59,7 +59,6 @@ def comment():
     elif request.method == "POST":
         # get post id; credit to TA Kelly Chen '23 for help on getting the specific post id's using multidict key selector
         post_id = list(request.form.keys())[1]
-        # print(item for item in info)
         user_id = session["user_id"]
         # post_name = request.form.get("post_id")
         content = request.form.get("reply")
@@ -93,6 +92,7 @@ def post():
         # return apology if title or post body is empty
         if not request.form.get("title") or not request.form.get("body"):
             return apology("Empty title or body", 403)
+        # else insert the info into the post table
         else:
             title = request.form.get("title")
             body = request.form.get("body")
