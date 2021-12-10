@@ -78,6 +78,7 @@ def history():
     post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", post=post)
 
+# added delete post function
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
 def delete():
