@@ -11,6 +11,7 @@
                 <th class="text-start">Title</th>
                 <th class="text-start">Post</th>
                 <th class="text-end">Created</th>
+                <th class="hidden">Delete</th>
             </tr>
         </thead>
        <tbody>
@@ -19,6 +20,12 @@
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-end">{{row.created}}</td>
+                    <td class="text-end">
+                        {# delete post function #}
+                        <form action="/delete" method="post">
+                            <input type="hidden">
+                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Delete Post</button>
+                        </form>
                 </tr>
             {% endfor %}
         </tbody>

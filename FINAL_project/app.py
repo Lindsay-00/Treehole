@@ -75,9 +75,23 @@ def comment():
 def history():
     # pass in info from post
     user_id = session["user_id"]
-    post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
+    post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", post=post)
 
+@app.route("/delete", methods=["GET", "POST"])
+@login_required
+def comment():
+    # bring user to this page via GET
+    if request.method == "GET":
+        return render_template("history.html")
+    # get info from POST
+    elif request.method == "POST":
+        # get post id; credit to TA Kelly Chen '23 for help on getting the specific post id's using multidict key selector
+        post_id = list(request.form.keys())[1]
+        user_id = session["user_id"]
+        content = request.form.get("reply")
+        db.execute("DELETE FROM post WHERE (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
+    return redirect("/index")
 
 @app.route("/seekhelp")
 @login_required
