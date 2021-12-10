@@ -28,11 +28,13 @@
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
-                    {% for each in comment %}
-                        {% if each.post_id == row.post_id %}
-                            <td class="text-start">{{each.content}}</td>
-                        {% endif %}
-                    {% endfor %}
+                        <ul class="list-group">
+                            {% for each in comment %}
+                                {% if each.post_id == row.post_id %}
+                                    <li class="list-group-item">{{each.content}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                     </td>
                     <td class="text-start">
                         <form action="/comment" method="post">
