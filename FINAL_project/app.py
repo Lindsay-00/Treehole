@@ -57,12 +57,12 @@ def comment():
         return render_template("index.html")
     # get info from POST
     elif request.method == "POST":
+        # get post id
         post_id = list(request.form.keys())[1]
         # print(item for item in info)
         user_id = session["user_id"]
         # post_name = request.form.get("post_id")
         content = request.form.get("reply")
-        # get post id
         # post_id = db.execute("SELECT post_id FROM post WHERE title =?", post_name)
         db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
 
