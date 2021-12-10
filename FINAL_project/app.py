@@ -35,21 +35,23 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+
 @app.route("/")
 def hello():
     return render_template("hello.html")
 
-@app.route("/index",methods=["GET", "POST"])
+
+@app.route("/index", methods=["GET", "POST"])
 @login_required
 def index():
     """Show posts"""
     post = db.execute("SELECT post_id, created, title, body FROM post")
-    comment = db.execute("SELECT post_id, content FROM comment ")
+    comment = db.execute("SELECT post_id, content FROM comment")
     # Render
     return render_template("index.html", post=post, comment=comment)
 
 
-@app.route("/comment",methods=["GET", "POST"])
+@app.route("/comment", methods=["GET", "POST"])
 @login_required
 def comment():
     # bring user to this page via GET
@@ -64,6 +66,7 @@ def comment():
         db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
     return redirect("/index")
 
+
 @app.route("/history")
 @login_required
 def history():
@@ -72,9 +75,11 @@ def history():
     post = db.execute("SELECT created, title, body FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", post=post)
 
+
 @app.route("/seekhelp")
 @login_required
 def seekhelp():
+    # show seekhelp page
     return render_template("seekhelp.html")
 
 
@@ -100,10 +105,7 @@ def post():
             # user_post = request.form.get("post")
             # user_title = request.form.get("title")
             # user_posts = user_posts.append(user_post)
-
-        return redirect("/")
-
-
+        return redirect("/index")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -152,6 +154,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -182,9 +185,6 @@ def register():
                 hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
                 db.execute("INSERT INTO user (username, password) VALUES (?, ?)", username, hash)
     return redirect("/")
-
-
-# this is my personal touch
 
 
 @app.route("/reset_password", methods=["GET", "POST"])
