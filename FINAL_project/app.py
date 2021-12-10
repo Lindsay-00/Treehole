@@ -57,6 +57,23 @@ def index():
         return render_template("index.html", post=post, comment=comment)
 
 
+@app.route("/index", methods=["GET", "POST"])
+@login_required
+def timer():
+    timestamps = db.execute("SELECT ")
+    
+
+    # if len(session) == 0:
+    #     return redirect("/login")
+    # else:
+    #     """Show posts"""
+    #     post = db.execute("SELECT post_id, created, title, body FROM post")
+    #     comment = db.execute("SELECT post_id, content FROM comment")
+    #     # Render
+    #     return render_template("index.html", post=post, comment=comment)
+
+
+
 @app.route("/comment", methods=["GET", "POST"])
 @login_required
 def comment():
