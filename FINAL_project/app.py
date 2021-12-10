@@ -78,6 +78,7 @@ def history():
     post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ?", user_id)
     return render_template("history.html", post=post)
 
+
 # added delete post function
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
@@ -91,6 +92,7 @@ def delete():
         db.execute("DELETE FROM post WHERE post_id = ?", post_id)
         db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
     return redirect("/history")
+
 
 @app.route("/seekhelp")
 @login_required
