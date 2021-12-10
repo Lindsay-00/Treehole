@@ -28,9 +28,10 @@
                     <td class="text-start">{{row.title}}</td>
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-start">
-                    {% for comment in comments %} <!--how to get the comment linked with the post-->
+                    
+                    {# {% for comment in comments %} <!--how to get the comment linked with the post-->
                         {{comment.}}}
-                    {% endfor %}
+                    {% endfor %} #}
                     </td>
                     <td class="text-start">
                         <form action="/comment" method="post">
