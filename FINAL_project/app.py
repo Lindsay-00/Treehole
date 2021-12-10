@@ -57,8 +57,7 @@ def comment():
         return render_template("index.html")
     # get info from POST
     elif request.method == "POST":
-        info = request.form.keys()
-        print(len(info))
+        info = list(request.form.keys())[1]
         # print(item for item in info)
         user_id = session["user_id"]
         post_name = request.form.get("post_id")
