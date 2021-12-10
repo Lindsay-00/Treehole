@@ -46,6 +46,7 @@ def index():
     post = db.execute("SELECT post_id, created, title, body FROM post")
     comments = db.execute("SELECT content FROM comment ")
     print(comments)
+    print(post)
     # Render
     return render_template("index.html", post=post)
 
