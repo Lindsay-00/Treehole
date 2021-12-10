@@ -62,7 +62,7 @@ def comment():
         return render_template("index.html")
     # get info from POST
     elif request.method == "POST":
-        # get post id; credit to TA Kelly Chen '23 for help on getting the specific post id's using multidict key selector
+        # get info to be added to database; credit to TA Kelly Chen '23 for help on getting the specific post id's using multidict key selector
         post_id = list(request.form.keys())[1]
         user_id = session["user_id"]
         content = request.form.get("reply")
