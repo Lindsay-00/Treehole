@@ -53,20 +53,32 @@ def index():
         """Show posts"""
         post = db.execute("SELECT post_id, created, title, body FROM post")
         comment = db.execute("SELECT post_id, content FROM comment")
-        # Render
+
+        # below is the timer function
+        timestamps = db.execute("SELECT created FROM post")
+        for each in timestamps:
+            timestamp = each["created"]
+            print(timestamp)
+            # if time is greater than 24 hours
+                # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+                # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+
+
         return render_template("index.html", post=post, comment=comment)
 
 
-@app.route("/index", methods=["GET", "POST"])
-@login_required
-def timer():
-    timestamps = db.execute("SELECT created FROM post")
-    for timestamp in timestamps:
-        print(timestamp)
-        # if time is greater than 24 hours
-            # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-            # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
-    return render_template("index.html")
+
+
+# @app.route("/index", methods=["GET", "POST"])
+# @login_required
+# def timer():
+#     timestamps = db.execute("SELECT created FROM post")
+#     for timestamp in timestamps:
+#         print(timestamp)
+#         # if time is greater than 24 hours
+#             db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+#             db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+#     return render_template("index.html")
 
 
 
