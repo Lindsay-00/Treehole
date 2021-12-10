@@ -60,11 +60,9 @@ def comment():
         # get post id; credit to TA Kelly Chen '23 for help on getting the specific post id's using multidict key selector
         post_id = list(request.form.keys())[1]
         user_id = session["user_id"]
-        # post_name = request.form.get("post_id")
         content = request.form.get("reply")
-        # post_id = db.execute("SELECT post_id FROM post WHERE title =?", post_name)
         db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
-
+    return redirect("/index")
 
 @app.route("/history")
 @login_required
