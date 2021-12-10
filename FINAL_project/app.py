@@ -107,8 +107,9 @@ def edit():
     # get info from POST
     elif request.method == "POST":
         post_id = list(request.form.keys())[1]
-        db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-        db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+        body = request.form.get("body")
+        title = request.form.get("title")
+        db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
     return redirect("/history")
 
 
