@@ -44,7 +44,7 @@ def hello():
 def index():
     """Show posts"""
     # get info from session and tables
-    post = db.execute("SELECT id, created, title, body FROM post")
+    post = db.execute("SELECT created, title, body FROM post")
     # for each in post:
     #     post_comment = db.execute("SELECT content FROM comment JOIN ")
 
