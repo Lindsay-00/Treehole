@@ -47,8 +47,7 @@ def hello():
 @app.route("/index", methods=["GET", "POST"])
 # @login_required
 def index():
-    print(session)
-    if not session["user_id"]:
+    if len(session) == 0:
         return redirect("/login")
     else:
         """Show posts"""
