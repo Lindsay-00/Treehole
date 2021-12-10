@@ -49,7 +49,7 @@ def index():
     #     post_comment = db.execute("SELECT content FROM comment JOIN ")
 
 
-    # Render portfolio
+    # Render 
     return render_template("index.html", post=post)
 
 @app.route("/history")
