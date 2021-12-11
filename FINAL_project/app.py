@@ -129,6 +129,7 @@ def edit(post_id):
         return render_template("edit.html", post=post)
     # get info from POST
     elif request.method == "POST":
+        print("did we get here")
         # return apology if the user is not the owner of the post
         if user_id != post[0]['author_id']:
             return apology("Access Denied", 401)
