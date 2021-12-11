@@ -132,13 +132,17 @@ def edit(post_id):
         post = db.execute("SELECT * FROM post WHERE post_id = ?", post_id)
         print(post)
         render_template("edit.html", post=post)
+        # return apology if the user is not the owner of the post
         if user_id != post[1].author_id:
             return apology("Access Denied", 401)
         else:
             body = request.form.get("body")
             title = request.form.get("title")
-            if 
-            db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
+            # return apology if title or body is empty
+            if not body or not title:
+                return apology("Empty title or body", 403)
+            else:
+                db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
 
     return redirect("/history")
 
