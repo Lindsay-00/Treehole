@@ -118,7 +118,7 @@ def delete():
     return redirect("/history")
 
 
-# edit post function (doesn't work yet)
+# edit post function
 @app.route("/edit/<post_id>", methods=["GET", "POST"])
 @login_required
 def edit(post_id):
