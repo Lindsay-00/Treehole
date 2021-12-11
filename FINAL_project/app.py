@@ -111,6 +111,7 @@ def delete():
     # get info from POST
     elif request.method == "POST":
         post_id = list(request.form.keys())[1]
+        print(list(request.form.keys()))
         db.execute("DELETE FROM post WHERE post_id = ?", post_id)
         db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
     return redirect("/history")
