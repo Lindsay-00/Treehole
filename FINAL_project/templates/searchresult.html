@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block main %}
+
+<!-- Display Blog posts -->
+<table class="table tablestriped">
+    <thead>
+        <tr>
+            <th class="text-start" style="display:none;">ID</th>
+            <th class="text-start">Title</th>
+            <th class="text-start">Post</th>
+            <th class="text-start">Comments</th>
+            <th class="text-start">Reply</th>
+            <th class="text-end">Created on</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in post %}
+        <div class="container">
+            <div class="post-preview">
+                <tr>
+                    <td class="text-start" style="display:none;">{{row.post_id}}</td>
+                    <td class="text-start">{{row.title}}</td>
+                    <td class="text-start">{{row.body}}</td>
+                    <td class="text-start">
+                        <ul class="list-group list-group-flush">
+                            <!-- display comments -->
+                            {% for each in comment %}
+                                {% if each.post_id == row.post_id %}
+                                    <li class="list-group-item">{{each.content}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="text-start">
+                         <!-- reply to each post -->
+                        <form action="/comment" method="post">
+                                <input type="text" class="form-control" name="reply" id="reply" placeholder="Leave a comment" aria-describedby="basic-addon2">
+                                    <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Reply</button>
+                        </form>
+                    </td>
+                    <td class="text-end">{{row.created}}</td>
+                </tr>
+            </div>
+        </div>
+    {% endfor %}
+    </tbody>
+
+{% endblock %}
