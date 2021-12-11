@@ -15,11 +15,10 @@
 {% for row in post %}
 <form action="/edit/{{row.post_id}}" method="post">
     <div class="mb-3">
-        <input class="form-control mx-auto w-auto" name="title" id="title" value={{row.title}}>
-            <p>{{row.title}}</p>
+        <input class="form-control mx-auto w-auto" name="title" id="title" value="{{row.title}}">
     </div>
     <div class="mb-3">
-        <input class="form-control mx-auto w-auto" name="body" id="body" value={{row.body}}>
+        <input class="form-control mx-auto w-auto" name="body" id="body" value="{{row.body}}">
     </div>
     <button class="btn btn-outline-success" type="submit">Update</button>
 </form>
