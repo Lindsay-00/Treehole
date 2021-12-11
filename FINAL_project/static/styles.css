@@ -6,7 +6,8 @@ nav .navbar-brand
 
 body {
     background-image: url("https://images.pond5.com/clean-light-green-background-smooth-footage-090804049_prevstill.jpeg");
- }
+    background: rgba(0,0,0,0.1);
+}
 
 /* Colors for brand */
 nav .navbar-brand .blue
