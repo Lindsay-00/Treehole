@@ -4,12 +4,8 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-body {
-    background-image: url("https://images.pond5.com/clean-light-green-background-smooth-footage-090804049_prevstill.jpeg");
-}
-
-img {
-    opacity: 0.5;
+* {
+    font-family: sans-serif;
   }
 
 /* Colors for brand */
