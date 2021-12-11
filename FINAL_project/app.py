@@ -54,7 +54,7 @@ def index():
     # if already logged in
     else:
         """Show posts & comments"""
-        post = db.execute("SELECT post_id, created, title, body FROM post ODER BY created")
+        post = db.execute("SELECT post_id, created, title, body FROM post ORDER BY created DESC")
         comment = db.execute("SELECT post_id, content FROM comment")
 
         # below is the timer function to delete posts automatically after designated time
