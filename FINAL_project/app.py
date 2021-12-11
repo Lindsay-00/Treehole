@@ -122,7 +122,7 @@ def delete():
 def edit():
     # bring user to this page via GET
     if request.method == "GET":
-        return render_template("edit.html")
+        return render_template("history.html")
     # get info from POST
     elif request.method == "POST":
         post_id = list(request.form.keys())[1]
