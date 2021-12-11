@@ -13,10 +13,9 @@ html, body
 
 page-container
 {
-    position: relative;
-    min-height:100vh;
-    height: inherit;
-    width: inherit;
+    position: absolute;
+    min-height:100%;
+    margin-bottom: -50px;
 }
 
 content-wrap
