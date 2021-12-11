@@ -63,6 +63,7 @@ def index():
             timestamp = each["created"]
             post_id = each["post_id"]
             # seems like something could be simplified here
+            # from python manual https://docs.python.org/3/library/datetime.html
             current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
