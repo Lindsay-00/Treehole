@@ -125,7 +125,7 @@ def edit():
         return render_template("edit.html")
     # get info from POST
     elif request.method == "POST":
-        post_id = list(request.form.keys())[1]
+        post_id = list(request.form.keys())[2]
         post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
         render_template("edit.html", post=post)
         body = request.form.get("body")
