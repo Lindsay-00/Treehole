@@ -63,10 +63,10 @@ def index():
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end =   datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
-            print(difference)
-            if difference > datetime.timedelta."1 day":
-                db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-                db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+            print(int(difference))
+            # if difference > datetime.timedelta."1 day":
+            #     db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+            #     db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
 
         return render_template("index.html", post=post, comment=comment)
