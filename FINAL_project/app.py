@@ -121,12 +121,12 @@ def delete():
 @login_required
 def edit():
     # bring user to this page via GET
+    post_id = 0
     if request.method == "GET":
+        post_id = list(request.form.keys())[1]
         return render_template("edit.html")
     # get info from POST
     elif request.method == "POST":
-        print(list(request.form.keys()))
-        post_id = list(request.form.keys())[2]
         post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
         render_template("edit.html", post=post)
         body = request.form.get("body")
