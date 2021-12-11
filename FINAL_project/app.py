@@ -140,9 +140,7 @@ def edit(post_id):
                 return apology("Empty title or body", 403)
             else:
                 db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
-
-    return redirect("/history")
-
+                return redirect("/history")
 
 @app.route("/seekhelp")
 @login_required
