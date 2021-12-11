@@ -150,7 +150,13 @@ def search():
     if request.method == "GET":
         return redirect("/index")
     elif request.method == "POST":
-        
+        keyword = request.form.get("keyword")
+        # render apology if input is empty
+        if not keyword:
+            return apology("Empty input", 403)
+        else:
+            post = db.execute("SELECT * FROM post WHERE content LIKE ?", keyword)
+
 
 @app.route("/seekhelp")
 @login_required
