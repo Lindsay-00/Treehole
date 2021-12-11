@@ -155,7 +155,7 @@ def search():
         if not keyword:
             return apology("Empty input", 403)
         else:
-            post = db.execute("SELECT * FROM post WHERE content LIKE '%?%'", keyword)
+            post = db.execute("SELECT * FROM post WHERE body LIKE ?", keyword)
             comment = db.execute("SELECT post_id, content FROM comment")
             return render_template("searchresult.html", post=post, comment=comment)
 
