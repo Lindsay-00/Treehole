@@ -148,7 +148,9 @@ def edit(post_id):
 @login_required
 def search():
     if request.method == "GET":
-        return 
+        return redirect("/index")
+    elif request.method == "POST":
+        
 
 @app.route("/seekhelp")
 @login_required
