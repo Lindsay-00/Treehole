@@ -4,12 +4,6 @@
     Index
 {% endblock %}
 
-<script>
-function deleteAlert() {
-  alert("Your Post and its associated comment has been deleted.");
-}
-
-</script>
 
 {% block main %}
     <table class="table tablestriped">
@@ -30,7 +24,7 @@ function deleteAlert() {
                         {# delete post function #}
                         <form action="/delete" method="post">
                             <input type="hidden" name="delete">
-                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}} onclick="deleteAlert() onclick="return confirm('Are you sure you want to delete?');">Delete</button>
+                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}} onclick="return confirm('Are you sure you want to delete this post and all its comments?');">Delete</button>
                         </form>
                     </td>
                     <td class="text-end">
