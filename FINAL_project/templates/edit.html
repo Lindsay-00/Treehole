@@ -4,18 +4,6 @@
     Edit Post
 {% endblock %}
 
-<<<<<<< HEAD
-
-
-{% block header %}
-<h1 class="display-4 font-weight-bold">Edit This Post</h1>
-<p class="font-italic mb-0">That's not what I meant to say ... </p>
-{% endblock %}
-
-
-{% block main %}
-<form action="/edit" method="post">
-=======
 {% block header %}
 <h1 class="display-4 font-weight-bold">Edit This Post</h1>
 <p class="font-italic mb-0">That's not what I meant to say ... </p>
@@ -26,12 +14,11 @@
 
 {% for row in post %}
 <form action="/edit/{{row.post_id}}" method="post">
->>>>>>> 777000b3b75659d2cc8328ab161c63bef6c9c27e
     <div class="mb-3">
         <input class="form-control mx-auto w-auto" name="title" id="title" value="{{row.title}}">
     </div>
     <div class="mb-3">
-        <input class="form-control mx-auto w-auto" name="body" id="body" value="{{row.body}}">
+        <input class="form-control mx-auto w-auto" name="body" rows="3" id="body" value="{{row.body}}">
     </div>
     <button class="btn btn-outline-success" type="submit">Update</button>
 </form>
