@@ -4,10 +4,18 @@
     About
 {% endblock %}
 
+{% block header %}
+<h1 class="display-4 font-weight-bold">Say Something</h1>
+<p class="font-italic mb-0">What's on your mind today? </p>
+{% endblock %}
+
 {% block main %}
 
-<h2>What's on your mind today? </h2>
+<h2>Remember, everything will be gone in 24 hours. </h2>
 <br>
+<h2>Tomorrow is another day :) </h2>
+
+
 <form action="/post" method="post">
     <div class="mb-3">
         <input class="form-control mx-auto w-auto" name="title" id="title" placeholder="title">
