@@ -110,7 +110,6 @@ def delete():
         return render_template("history.html")
     # get info from POST
     elif request.method == "POST":
-        print(list(request.values.keys()))
         post_id = list(request.form.keys())[1]
         db.execute("DELETE FROM post WHERE post_id = ?", post_id)
         db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
@@ -124,7 +123,7 @@ def edit():
     # bring user to this page via GET
     post_id = 0
     if request.method == "GET":
-        print(list(request.values.keys()))
+        print(request.values)
         # post_id = list(request.args.keys())[1]
         return render_template("edit.html")
     # get info from POST
