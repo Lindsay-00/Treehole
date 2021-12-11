@@ -124,6 +124,7 @@ def delete():
 def edit(post_id):
     user_id = session["user_id"]
     post = list(db.execute("SELECT * FROM post WHERE post_id = ?", post_id))
+    print(post)
     # bring user to this page via GET
     if request.method == "GET":
         return render_template("edit.html", post=post)
