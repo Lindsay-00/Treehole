@@ -30,7 +30,7 @@ function deleteAlert() {
                         {# delete post function #}
                         <form action="/delete" method="post">
                             <input type="hidden" name="delete">
-                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}} onclick="deleteAlert() data-confirm="Are you sure to delete this item?">Delete</button>
+                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}} onclick="deleteAlert() onclick="return confirm('Are you sure you want to delete?');">Delete</button>
                         </form>
                     </td>
                     <td class="text-end">
