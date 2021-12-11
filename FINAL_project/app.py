@@ -157,7 +157,7 @@ def search():
         else:
             post = db.execute("SELECT * FROM post WHERE content LIKE '%?%'", keyword)
             comment = db.execute("SELECT post_id, content FROM comment")
-            return render_template("searchresult.html", post=post)
+            return render_template("searchresult.html", post=post, comment=comment)
 
 
 @app.route("/seekhelp")
