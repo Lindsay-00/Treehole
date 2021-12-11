@@ -55,7 +55,7 @@ def index():
         post = db.execute("SELECT post_id, created, title, body FROM post")
         comment = db.execute("SELECT post_id, content FROM comment")
 
-        # below is the timer function
+        # below is the timer function to delete posts automatically after designated time
         timestamps = db.execute("SELECT created, post_id FROM post")
         for each in timestamps:
             timestamp = each["created"]
@@ -67,8 +67,8 @@ def index():
             difference = end - start
             print(difference)
             if difference > timedelta(hours=24):
-                 db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-                 db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+                db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+                db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
         return render_template("index.html", post=post, comment=comment)
 
