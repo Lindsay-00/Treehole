@@ -122,6 +122,7 @@ def delete():
 @app.route("/edit/:id", methods=["GET", "POST"])
 @login_required
 def edit():
+
     # bring user to this page via GET
     post_id = 0
     if request.method == "GET":
