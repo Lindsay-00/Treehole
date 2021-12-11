@@ -158,8 +158,11 @@ def search():
             # placeholder concatenation method source: https://stackoverflow.com/questions/20904209/how-to-execute-select-like-statement-with-a-placeholder-in-sqlite
             # credit to TA Jessie Cheung '24 for helping us find this!
             post = db.execute("SELECT * FROM post WHERE body LIKE ? OR title LIKE ? ORDER BY created DESC", (f'%{keyword}%',), (f'%{keyword}%',))
-            comment = db.execute("SELECT post_id, content FROM comment")
-            return render_template("searchresult.html", post=post, comment=comment)
+            if not post:
+                return apology("No posts found", 403)
+            else:
+                comment = db.execute("SELECT post_id, content FROM comment")
+                return render_template("searchresult.html", post=post, comment=comment)
 
 
 @app.route("/seekhelp")
