@@ -21,7 +21,7 @@
                     <td class="text-start">{{row.body}}</td>
                     <td class="text-end">{{row.created}}</td>
                     {# test #}
-                    {% set post_id = {{row.post_id}} %}
+                    {% set post_id = row.post_id %}
                     <td class="text-end">
                         {# delete post function #}
                         <form action="/delete" method="post">
