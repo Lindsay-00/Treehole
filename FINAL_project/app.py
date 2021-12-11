@@ -119,9 +119,11 @@ def delete():
 
 
 # edit post function (doesn't work yet)
-@app.route("/edit/:id", methods=["GET", "POST"])
+@app.route("/edit/<my_cool_variable>", methods=["GET", "POST"])
 @login_required
-def edit():
+def edit(my_cool_variable):
+
+    print(my_cool_variable)
 
     # bring user to this page via GET
     post_id = 0
