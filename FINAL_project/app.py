@@ -130,6 +130,7 @@ def edit(post_id):
     # get info from POST
     elif request.method == "POST":
         print("did we get here")
+        print(post_id)
         # return apology if the user is not the owner of the post
         if user_id != post[0]['author_id']:
             return apology("Access Denied", 401)
