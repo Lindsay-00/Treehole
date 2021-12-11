@@ -123,17 +123,14 @@ def delete():
 @login_required
 def edit(post_id):
     user_id = session["user_id"]
-    print(post_id)
+    post = list(db.execute("SELECT * FROM post WHERE post_id = ?", post_id))
     # bring user to this page via GET
     if request.method == "GET":
-        return render_template("edit.html")
+        return render_template("edit.html", post=post)
     # get info from POST
     elif request.method == "POST":
-        post = list(db.execute("SELECT * FROM post WHERE post_id = ?", post_id))
-        print(post)
-        render_template("edit.html", post=post)
         # return apology if the user is not the owner of the post
-        if user_id != post[1].author_id:
+        if user_id != post[0]['author_id']:
             return apology("Access Denied", 401)
         else:
             body = request.form.get("body")
