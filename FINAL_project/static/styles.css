@@ -4,17 +4,8 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-<<<<<<< HEAD
-
-* {
-    font-family: Papyrus;
-  }
-
-html, body
-=======
 /* Alternative Font */
 .treehole-font
->>>>>>> 6186adf2d1d458e2e11a494317116839444bb5de
 {
     font-family: Papyrus;
 }
