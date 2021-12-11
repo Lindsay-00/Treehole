@@ -31,7 +31,7 @@
                         {# edit post function #}
                         <form action="/edit" method="get">
                             <input type="hidden" name="edit">
-                            <a class="btn btn-outline-info" role="button" type="submit" name={{row.post_id}} href="/edit">Edit</a>
+                            <a class="btn btn-outline-info" role="button" type="submit" name={{row.post_id}} href="/edit/{{row.post_id}}">Edit</a>
                         </form>
                     </td>
                 </tr>

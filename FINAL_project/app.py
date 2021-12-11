@@ -119,7 +119,7 @@ def delete():
 
 
 # edit post function (doesn't work yet)
-@app.route("/edit", methods=["GET", "POST"])
+@app.route("/edit/:id", methods=["GET", "POST"])
 @login_required
 def edit():
     # bring user to this page via GET
