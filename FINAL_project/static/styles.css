@@ -4,6 +4,10 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+body {
+    background-image: url("https://wallpapershome.com/images/pages/pic_v/5348.jpg");
+ }
+
 /* Colors for brand */
 nav .navbar-brand .blue
 {
