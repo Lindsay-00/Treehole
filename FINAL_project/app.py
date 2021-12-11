@@ -59,7 +59,7 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            date_format_str = '%Y-%m-%d %H:%M:%S.%f'
+            date_format_str = '%y-%m-%d %H:%M:%S %f'
             current_time = "2021-12-10 22:51:57"
             start = datetime.strptime(timestamp, date_format_str)
             end =   datetime.strptime(current_time, date_format_str)
