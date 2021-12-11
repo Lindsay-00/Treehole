@@ -99,7 +99,7 @@ def comment():
 def history():
     # pass in info from post
     user_id = session["user_id"]
-    post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ?", user_id)
+    post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ? ORDER BY created DESC", user_id)
     return render_template("history.html", post=post)
 
 
@@ -156,7 +156,7 @@ def search():
         if not keyword:
             return apology("Empty input", 403)
         else:
-            post = db.execute("SELECT * FROM post WHERE body LIKE ?", (f'%{keyword}%',))
+            post = db.execute("SELECT * FROM post WHERE body LIKE ? ORDER BY created DESC", (f'%{keyword}%',))
             comment = db.execute("SELECT post_id, content FROM comment")
             return render_template("searchresult.html", post=post, comment=comment)
 
