@@ -127,7 +127,7 @@ def edit():
     elif request.method == "POST":
         post_id = list(request.form.keys())[1]
         post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
-        render_template("edit.html", post=post, body=body, title=title)
+        render_template("edit.html", post=post)
         body = request.form.get("body")
         title = request.form.get("title")
         db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
