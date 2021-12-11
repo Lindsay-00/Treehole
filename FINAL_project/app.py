@@ -54,7 +54,7 @@ def index():
     # if already logged in
     else:
         """Show posts & comments"""
-        post = db.execute("SELECT post_id, created, title, body FROM post")
+        post = db.execute("SELECT post_id, created, title, body FROM post ORDER BY created DESC")
         comment = db.execute("SELECT post_id, content FROM comment")
 
         # below is the timer function to delete posts automatically after designated time
@@ -88,6 +88,8 @@ def comment():
         post_id = list(request.form.keys())[1]
         user_id = session["user_id"]
         content = request.form.get("reply")
+        if not content:
+            return apology("Empty comment", 403)
         db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
     return redirect("/index")
 
@@ -97,7 +99,7 @@ def comment():
 def history():
     # pass in info from post
     user_id = session["user_id"]
-    post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ?", user_id)
+    post = db.execute("SELECT created, title, body, post_id FROM post WHERE author_id = ? ORDER BY created DESC", user_id)
     return render_template("history.html", post=post)
 
 
@@ -116,25 +118,46 @@ def delete():
     return redirect("/history")
 
 
-# edit post function (doesn't work yet)
-@app.route("/edit", methods=["GET", "POST"])
+# edit post function
+@app.route("/edit/<post_id>", methods=["GET", "POST"])
 @login_required
-def edit():
+def edit(post_id):
+    user_id = session["user_id"]
+    post = list(db.execute("SELECT * FROM post WHERE post_id = ?", post_id))
+    print(post)
     # bring user to this page via GET
-    post_id = 0
     if request.method == "GET":
-        # post_id = list(request.args.keys())[1]
-        return render_template("edit.html")
+        return render_template("edit.html", post=post)
     # get info from POST
     elif request.method == "POST":
-        print(request.form.keys())
-        # post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
-        # render_template("edit.html", post=post)
-        body = request.form.get("body")
-        title = request.form.get("title")
-        db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
+        # return apology if the user is not the owner of the post
+        if user_id != post[0]['author_id']:
+            return apology("Access Denied", 401)
+        else:
+            body = request.form.get("body")
+            title = request.form.get("title")
+            # return apology if title or body is empty
+            if not body or not title:
+                return apology("Empty title or body", 403)
+            else:
+                db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
+                return redirect("/history")
 
-    return redirect("/history")
+# search post by keyword
+@app.route("/search", methods=["GET", "POST"])
+@login_required
+def search():
+    if request.method == "GET":
+        return redirect("/index")
+    elif request.method == "POST":
+        keyword = request.form.get("keyword")
+        # render apology if input is empty
+        if not keyword:
+            return apology("Empty input", 403)
+        else:
+            post = db.execute("SELECT * FROM post WHERE body OR title LIKE ? ORDER BY created DESC", (f'%{keyword}%',))
+            comment = db.execute("SELECT post_id, content FROM comment")
+            return render_template("searchresult.html", post=post, comment=comment)
 
 
 @app.route("/seekhelp")

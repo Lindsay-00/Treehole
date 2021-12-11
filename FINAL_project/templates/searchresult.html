@@ -1,26 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Home
-{% endblock %}
-
-<<<<<<< HEAD
-=======
-{% block header %}
-<h1 class="display-4 font-weight-bold">Home</h1>
-<p class="font-italic mb-0">What's going on in the Tree Hole?</p>
+    Result
 {% endblock %}
 
 {% block main %}
->>>>>>> 777000b3b75659d2cc8328ab161c63bef6c9c27e
 
-
-{% block header %}
-<h1 class="display-4 font-weight-bold">Home</h1>
-<p class="font-italic mb-0">What's going on in the Tree Hole?</p>
-{% endblock %}
-
-{% block main %}
 <!-- Display Blog posts -->
 <table class="table tablestriped">
     <thead>
@@ -55,7 +40,7 @@
                          <!-- reply to each post -->
                         <form action="/comment" method="post">
                                 <input type="text" class="form-control" name="reply" id="reply" placeholder="Leave a comment" aria-describedby="basic-addon2">
-                                    <button class="btn btn-outline-success" type="submit" name={{row.post_id}}>Reply</button>
+                                    <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Reply</button>
                         </form>
                     </td>
                     <td class="text-end">{{row.created}}</td>
