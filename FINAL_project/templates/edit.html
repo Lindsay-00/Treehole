@@ -8,8 +8,8 @@
 
 <h2>Edit This Post</h2>
 
-<form action="/edit/<post_id>" method="post">
-    {% for row in post %}
+{% for row in post %}
+<form action="/edit/{{row.post_id}}" method="post">
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="title" id="title" value={{post.title}}> #}
         <input class="form-control mx-auto w-auto" name="title" id="title" placeholder={{row.title}}>
@@ -17,10 +17,10 @@
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="body" id="body" value={{post.body}}> #}
         <input class="form-control mx-auto w-auto" name="body" id="body" placeholder={{row.body}}>
-    {% endfor %}
     </div>
     <button class="btn btn-primary" type="submit">Update</button>
 </form>
+{% endfor %}
 
 
 {% endblock %}
