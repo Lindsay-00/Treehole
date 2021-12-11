@@ -144,6 +144,7 @@ def edit():
         body = request.form.get("body")
         title = request.form.get("title")
         db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
+
     return redirect("/history")
 
 
