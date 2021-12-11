@@ -59,7 +59,7 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            current_time = strftime(datetime.now())
+            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
