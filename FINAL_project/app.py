@@ -48,10 +48,12 @@ def hello():
 @app.route("/index", methods=["GET", "POST"])
 # @login_required
 def index():
+    # prompt for login if haven't done so
     if len(session) == 0:
         return redirect("/login")
+    # if already logged in
     else:
-        """Show posts"""
+        """Show posts & comments"""
         post = db.execute("SELECT post_id, created, title, body FROM post")
         comment = db.execute("SELECT post_id, content FROM comment")
 
@@ -65,27 +67,11 @@ def index():
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
-            print(difference)
-            if difference > timedelta(hours=24):
+            if difference > timedelta(hours=1000000):
                 db.execute("DELETE FROM post WHERE post_id = ?", post_id)
                 db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
         return render_template("index.html", post=post, comment=comment)
-
-
-
-
-# @app.route("/index", methods=["GET", "POST"])
-# @login_required
-# def timer():
-#     timestamps = db.execute("SELECT created FROM post")
-#     for timestamp in timestamps:
-#         print(timestamp)
-#         # if time is greater than 24 hours
-#             db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-#             db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
-#     return render_template("index.html")
-
 
 
 
