@@ -39,12 +39,8 @@
                     <td class="text-start">
                          <!-- reply to each post -->
                         <form action="/comment" method="post">
-                            <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="reply" id="reply" placeholder="Leave a comment" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
                                     <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Reply</button>
-                                </div>
-                            </div>
                         </form>
                     </td>
                     <td class="text-end">{{row.created}}</td>

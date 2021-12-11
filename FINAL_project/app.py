@@ -129,12 +129,16 @@ def edit(post_id):
         return render_template("edit.html")
     # get info from POST
     elif request.method == "POST":
-        print(request.form.keys())
-        post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
+        post = db.execute("SELECT * FROM post WHERE post_id = ?", post_id)
+        print(post)
         render_template("edit.html", post=post)
-        body = request.form.get("body")
-        title = request.form.get("title")
-        db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
+        if user_id != post[1].author_id:
+            return apology("Access Denied", 401)
+        else:
+            body = request.form.get("body")
+            title = request.form.get("title")
+            if 
+            db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
 
     return redirect("/history")
 
