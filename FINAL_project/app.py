@@ -148,7 +148,7 @@ def edit(post_id):
 @login_required
 def search():
     if request.method == "GET":
-        return redirect("/index")
+        return redirect("/search")
     elif request.method == "POST":
         keyword = request.form.get("keyword")
         # render apology if input is empty
