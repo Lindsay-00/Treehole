@@ -119,22 +119,19 @@ def delete():
 
 
 # edit post function (doesn't work yet)
-@app.route("/edit/<my_cool_variable>", methods=["GET", "POST"])
+@app.route("/edit/<post_id>", methods=["GET", "POST"])
 @login_required
-def edit(my_cool_variable):
-
-    print(my_cool_variable)
-
+def edit(post_id):
+    user_id = session["user_id"]
+    print(post_id)
     # bring user to this page via GET
-    post_id = 0
     if request.method == "GET":
-        # post_id = list(request.args.keys())[1]
         return render_template("edit.html")
     # get info from POST
     elif request.method == "POST":
         print(request.form.keys())
-        # post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
-        # render_template("edit.html", post=post)
+        post = db.execute("SELECT created, title, body FROM post WHERE post_id = ?", post_id)
+        render_template("edit.html", post=post)
         body = request.form.get("body")
         title = request.form.get("title")
         db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
