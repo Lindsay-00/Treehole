@@ -59,11 +59,11 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            current_time = "2021-12-10 22:51:57"
+            current_time = datetime.now()
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
-            end =   datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
+            end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
-            print(int(difference))
+            print(difference)
             # if difference > datetime.timedelta."1 day":
             #     db.execute("DELETE FROM post WHERE post_id = ?", post_id)
             #     db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
