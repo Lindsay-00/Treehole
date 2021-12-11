@@ -58,14 +58,17 @@
             </div>
         </nav>
 
-        {# <!--to see whether we need this?-->
-        {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
-        {% endif %} #}
+
+        {# page head banner #}
+        <header>
+        <!--https://bootstrapious.com/p/bootstrap-static-header-->
+        <div style="background: url(https://wallpaperaccess.com/full/3088717.jpg)" class="jumbotron bg-cover text-white">
+        <div class="container py-5 text-center">
+        {% block header %}{% endblock %}
+        </div>
+        </div>
+        </header>
+
 
         <main class="container-fluid py-5 text-center">
             {% block main %}{% endblock %}

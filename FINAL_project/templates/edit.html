@@ -4,19 +4,23 @@
     Edit Post
 {% endblock %}
 
+{% block header %}
+<h1 class="display-4 font-weight-bold">Edit This Post</h1>
+<p class="font-italic mb-0">That's not what I meant to say ... </p>
+{% endblock %}
+
 {% block main %}
 
-<h2>Edit This Post</h2>
 
 {% for row in post %}
 <form action="/edit/{{row.post_id}}" method="post">
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="title" id="title" value={{post.title}}> #}
-        <input class="form-control mx-auto w-auto" name="title" id="title" placeholder={{row.title}}>
+        <input class="form-control mx-auto w-auto" name="title" id="title" placeholder="New Title">
     </div>
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="body" id="body" value={{post.body}}> #}
-        <input class="form-control mx-auto w-auto" name="body" id="body" placeholder={{row.body}}>
+        <input class="form-control mx-auto w-auto" name="body" id="body" placeholder="New Post">
     </div>
     <button class="btn btn-primary" type="submit">Update</button>
 </form>
