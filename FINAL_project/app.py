@@ -88,6 +88,8 @@ def comment():
         post_id = list(request.form.keys())[1]
         user_id = session["user_id"]
         content = request.form.get("reply")
+        if not content:
+            return apology("Empty comment", 403)
         db.execute("INSERT INTO comment (author_id, content, post_id) VALUES (?, ?, ?)", user_id, content, post_id)
     return redirect("/index")
 
