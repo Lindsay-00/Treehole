@@ -143,6 +143,11 @@ def edit(post_id):
                 db.execute("UPDATE post SET title = ?, body = ? WHERE post_id = ?", title, body, post_id)
                 return redirect("/history")
 
+# search post by keyword
+@app.route("/search", methods=["GET", "POST"])
+@login_required
+def search():
+
 @app.route("/seekhelp")
 @login_required
 def seekhelp():
