@@ -9,13 +9,15 @@
 <h2>Edit This Post</h2>
 
 <form action="/edit" method="post">
+    {% for row in post %}
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="title" id="title" value={{post.title}}> #}
         <input class="form-control mx-auto w-auto" name="title" id="title">
     </div>
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="body" id="body" value={{post.body}}> #}
-        <input class="form-control mx-auto w-auto" name="body" id="body">
+        <input class="form-control mx-auto w-auto" name="body" id="body" placeholder={{row.body}}>
+    {% endfor %}
     </div>
     <button class="btn btn-primary" type="submit">Update</button>
 </form>

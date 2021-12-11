@@ -129,7 +129,7 @@ def edit(post_id):
         return render_template("edit.html")
     # get info from POST
     elif request.method == "POST":
-        post = db.execute("SELECT * FROM post WHERE post_id = ?", post_id)
+        post = list(db.execute("SELECT * FROM post WHERE post_id = ?", post_id))
         print(post)
         render_template("edit.html", post=post)
         # return apology if the user is not the owner of the post
