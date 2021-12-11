@@ -4,6 +4,12 @@
     Index
 {% endblock %}
 
+<script>
+function myFunction() {
+  alert("I am an alert box!");
+}
+</script>
+
 {% block main %}
     <table class="table tablestriped">
         <thead>
@@ -23,7 +29,7 @@
                         {# delete post function #}
                         <form action="/delete" method="post">
                             <input type="hidden" name="delete">
-                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}}>Delete</button>
+                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id} onclick="deleteAlert()"}>Delete</button>
                         </form>
                     </td>
                     <td class="text-end">
