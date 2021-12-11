@@ -6,7 +6,7 @@
 
 <script>
 function deleteAlert() {
-  alert("Your Post and its associated comment has been deleted. ");
+  alert("Your Post and its associated comment has been deleted.");
 }
 </script>
 
@@ -29,7 +29,7 @@ function deleteAlert() {
                         {# delete post function #}
                         <form action="/delete" method="post">
                             <input type="hidden" name="delete">
-                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id} onclick="deleteAlert()"}>Delete</button>
+                            <button class="btn btn-outline-primary" type="submit" name={{row.post_id}} onclick="deleteAlert() data-confirm="Are you sure to delete this item?">Delete</button>
                         </form>
                     </td>
                     <td class="text-end">
