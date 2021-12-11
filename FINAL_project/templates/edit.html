@@ -4,14 +4,15 @@
     Edit Post
 {% endblock %}
 
-{% block main %}
+
 
 {% block header %}
 <h1 class="display-4 font-weight-bold">Edit This Post</h1>
+<p class="font-italic mb-0">That's not what I meant to say ... </p>
 {% endblock %}
 
-<h2>Edit This Post</h2>
 
+{% block main %}
 <form action="/edit" method="post">
     <div class="mb-3">
         {# <input class="form-control mx-auto w-auto" name="title" id="title" value={{post.title}}> #}
