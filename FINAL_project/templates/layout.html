@@ -18,34 +18,6 @@
     </head>
 
     <body>
-<<<<<<< HEAD
-
-        <nav class="bg-light border navbar navbar-expand-md navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"> <span class="green">Yale Tree Hole</span></a>
-                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar">
-                    {% if session["user_id"] %}
-                        <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/post">Say Something</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/history">My Posts</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/seekhelp">Seek Help</a></li>
-                        </ul>
-                        <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/reset_password">Reset Password</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                        </ul>
-                    {% else %}
-                        <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                        </ul>
-                    {% endif %}
-=======
     <div id="page-container">
         <div id="content-wrap">
             <nav class="bg-light border navbar navbar-expand-md navbar-light">
@@ -84,7 +56,6 @@
                             </ul>
                         {% endif %}
                     </div>
->>>>>>> 777000b3b75659d2cc8328ab161c63bef6c9c27e
                 </div>
             </nav>
         </div>
@@ -100,28 +71,6 @@
         </div>
         </header>
 
-<<<<<<< HEAD
-        <header>
-        <!--https://bootstrapious.com/p/bootstrap-static-header-->
-        <div style="background: url(https://wallpaperaccess.com/full/3088717.jpg)" class="jumbotron bg-cover text-white">
-        <div class="container py-5 text-center">
-        {% block header %}{% endblock %}
-        </div>
-        </div>
-        </header>
-
-
-
-        <!--to see whether we need this?-->
-        {# {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
-        {% endif %} #}
-=======
->>>>>>> 777000b3b75659d2cc8328ab161c63bef6c9c27e
 
         <main class="container-fluid py-5 text-center">
             {% block main %}{% endblock %}
