@@ -64,7 +64,7 @@ def index():
             end =   datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
             print(difference)
-            # if time is greater than 24 hours
+            if difference > datetime.timedelta."1 day":
                 db.execute("DELETE FROM post WHERE post_id = ?", post_id)
                 db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
