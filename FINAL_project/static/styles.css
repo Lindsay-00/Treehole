@@ -4,6 +4,11 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+/* Alternative Font */
+treehole-font
+{
+    font-family: Papyrus;
+}
 
 /* Colors for brand */
 nav .navbar-brand .blue
