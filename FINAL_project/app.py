@@ -4,7 +4,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from helpers import apology, login_required
 
@@ -59,7 +59,7 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            current_time = datetime.now()
+            current_time = datetime.now() + timedelta(hours=0)
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
