@@ -59,15 +59,14 @@ def index():
         timestamps = db.execute("SELECT created FROM post")
         for each in timestamps:
             timestamp = each["created"]
-            date_format_str = '%Y-%m-%d %H:%M:%S'
             current_time = "2021-12-10 22:51:57"
-            start = datetime.strptime(timestamp, date_format_str)
-            end =   datetime.strptime(current_time, date_format_str)
-            difference = current_time - timestamp
+            start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+            end =   datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
+            difference = end - start
             print(difference)
             # if time is greater than 24 hours
-                # db.execute("DELETE FROM post WHERE post_id = ?", post_id)
-                # db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
+                db.execute("DELETE FROM post WHERE post_id = ?", post_id)
+                db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
 
         return render_template("index.html", post=post, comment=comment)
