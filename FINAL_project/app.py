@@ -123,6 +123,7 @@ def edit():
     # bring user to this page via GET
     post_id = 0
     if request.method == "GET":
+        print(list(request.form.keys()))
         post_id = list(request.form.keys())[1]
         return render_template("edit.html")
     # get info from POST
