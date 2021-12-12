@@ -33,10 +33,16 @@
             const pageAccessedByReload = (
                 (window.performance.navigation && window.performance.navigation.type === 1) ||
                     window.performance
-                    .getEntriesByType('navigation')
-                    .map((nav) => nav.type)
-                    .includes('reload')
-                );
+                    const theme = document.querySelector("#theme-link");
+                if (theme.getAttribute("href") == "static/dark.css") {
+                    // ... switch it to "light-theme.css"
+                    theme.href = "static/styles.css";
+
+                // Otherwise...
+                } else {
+                    // ... then switch it to "dark-theme.css"
+                    theme.href = "static/dark.css";
+                }
 
             alert(pageAccessedByReload);
 
