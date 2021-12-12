@@ -49,4 +49,3 @@ Yale Tree Hole is a forum where users can post, reply, search for, edit, and/or 
 
 15. Logout:
     On the top right corner of the page, click on “Logout” to log out.
-
