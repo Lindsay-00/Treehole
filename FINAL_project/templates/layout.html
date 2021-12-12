@@ -30,21 +30,27 @@
                     theme.href = "static/dark.css";
                 }
             }
-            const pageAccessedByReload = (
-                (window.performance.navigation && window.performance.navigation.type === 1) ||
-                    window.performance
-                    const theme = document.querySelector("#theme-link");
-                if (theme.getAttribute("href") == "static/dark.css") {
-                    // ... switch it to "light-theme.css"
-                    theme.href = "static/styles.css";
 
-                // Otherwise...
-                } else {
-                    // ... then switch it to "dark-theme.css"
-                    theme.href = "static/dark.css";
+            function reload() {
+                if (event.currentTarget.performance.navigation.type == 1) {
+                    const theme = document.querySelector("#theme-link");
+                    if (theme.getAttribute("href") == "static/dark.css") {
+                        // ... switch it to "light-theme.css"
+                        theme.href = "static/styles.css";
+
+                    // Otherwise...
+                    } else {
+                        // ... then switch it to "dark-theme.css"
+                        theme.href = "static/dark.css";
+                    }
+
                 }
 
-            alert(pageAccessedByReload);
+
+            }
+
+
+            reload ()
 
         </script>
 
