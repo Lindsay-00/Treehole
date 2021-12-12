@@ -7,11 +7,14 @@ nav .navbar-brand
 
 * {
     font-family: Papyrus;
+    color: #D8D8D6;
+    
   }
 
 html, body
 {
     font-family: Papyrus;
+    background-color: #878B7F;
 }
 
 
@@ -20,15 +23,20 @@ html, body
     color: #D8D8D6;
   }
 
+#reply, #dark, #title, #post {
+    color: #D8D8D6;
+    background-color: #878B7F;
+    
+}
 
 
   /* The switch - the box around the slider */
- .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
- }
+  }
   
   /* Hide default HTML checkbox */
   .switch input {
@@ -84,5 +92,3 @@ html, body
   .slider.round:before {
     border-radius: 50%;
   }
-
-

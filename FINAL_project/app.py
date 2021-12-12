@@ -274,7 +274,7 @@ def register():
             else:
                 hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
                 db.execute("INSERT INTO user (username, password) VALUES (?, ?)", username, hash)
-    return redirect("/")
+    return redirect("/login")
 
 
 @app.route("/reset_password", methods=["GET", "POST"])

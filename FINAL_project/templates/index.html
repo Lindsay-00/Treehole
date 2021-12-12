@@ -36,7 +36,7 @@
                             <!-- display comments -->
                             {% for each in comment %}
                                 {% if each.post_id == row.post_id %}
-                                    <li class="list-group-item">{{each.content}}</li>
+                                    <li class="list-group-item" id="dark">{{each.content}}</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
