@@ -69,7 +69,7 @@ def index():
             start = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
             end = datetime.strptime(current_time, '%Y-%m-%d %H:%M:%S')
             difference = end - start
-            if difference > timedelta(hours=100):
+            if difference > timedelta(hours=24):
                 db.execute("DELETE FROM post WHERE post_id = ?", post_id)
                 db.execute("DELETE FROM comment WHERE post_id = ?", post_id)
 
