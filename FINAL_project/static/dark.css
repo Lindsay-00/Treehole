@@ -23,10 +23,14 @@ html, body
     color: #D8D8D6;
   }
 
-#reply, #dark, #title, #post {
+ #dark {
     color: #D8D8D6;
     background-color: #878B7F;
     
+}
+
+#title, #post, #reply, #btnsubmit, #btnreply, #btnpost, #btnedit, #btndelete, #btnupdate {
+  background-color: #D8D8D6;
 }
 
 
