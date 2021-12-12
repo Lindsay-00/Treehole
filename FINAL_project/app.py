@@ -58,6 +58,7 @@ def index():
         comment = db.execute("SELECT post_id, content FROM comment")
 
         # below is the timer function to delete posts automatically after designated time
+        # credit to CS50 TA Charlie who gave us hints on how to implement the timer function :)
         timestamps = db.execute("SELECT created, post_id FROM post")
         for each in timestamps:
             timestamp = each["created"]
