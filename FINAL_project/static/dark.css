@@ -29,7 +29,7 @@ html, body
 
 }
 
-#title, #post, #reply, #btnsubmit, #btnreply, #btnpost, #btnedit, #btndelete, #btnupdate, #btnclick {
+#title, #post, #reply, #btnsubmit, #btnreply, #btnpost, #btnedit, #btndelete, #btnupdate {
   background-color: #D8D8D6;
 }
 
