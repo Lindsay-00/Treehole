@@ -32,7 +32,8 @@
             }
 
             function reload() {
-                if (event.currentTarget.performance.navigation.type == 1) {
+                // change the condition
+                if (document.refreshForm.visited.value == "") {
                     const theme = document.querySelector("#theme-link");
                     if (theme.getAttribute("href") == "static/dark.css") {
                         // ... switch it to "light-theme.css"
